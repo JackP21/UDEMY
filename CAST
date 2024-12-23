@@ -1,0 +1,19 @@
+CAST
+==========
+
+The CAST operator lets you convert from one data type into another.
+Keep in mind not every instance of datatype can be CAST to another data type, it must be reasonable to convert the data, for example '5' to an integer will work, 'five' to an integer will not.
+There are two main ways to use CAST syntax:
+SELECT CAST('5' AS INTEGER)
+
+PostgreSQL can operate CAST:
+SELECT '5' :: INTEGER
+This is only available to PostGreSQL.
+
+Keep in mind you can use this in a SELECT query with a column name instad of a single instance.
+SELECT CAST(date AS TIMESTAMP) FROM table;
+
+CAST can also be used like:
+SELECT CHAR_LENGTH(CAST(inventory_id AS VARCHAR)) FROM rental;
+
+This returns the length of each number, using it without CHAR_LENGTH returns you the actual number in the table.
