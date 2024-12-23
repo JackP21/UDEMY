@@ -1,0 +1,47 @@
+COALESCE
+============
+
+The COALESCE function accepts an unlimited number of arguements. It returns the first arguement that is not null. If all arguements are null, the COALESCE function will return null.
+- COALESCE (arg_1, arg_2, ..., arg_n)
+EXAMPLE L:
+  - SELECT COALESCE (1,2)
+    - 1
+  - SELECT COALESCE (NULL, 2, 3) 
+    - 2 
+With the first value in the second being NULL THE COALESCE function skips over it and starts at the first non null option which is 2.
+
+The COALESCE function becomes useful when querying a table that contains null values and substituting it with another value.
+Simple example:
+- Table of products
+- Price and discount in dollars:
+
+item | price | discount
+-----------------------
+ A   |  100  |   20
+ B   |  300  |   null
+ C   |  200  |   10
+
+COALESCE simply replaces null values in this mathematical instances with just a 0, without altering your original table.
+If we use:
+SELECT item, (price - discount) AS final FROM table;
+
+item | final  |
+---------------
+ A   |  80    |   
+ B   |  null  |   
+ C   |  190   |   
+This will be our result.
+
+Instead we will use:
+SELECT item,(price - COALESCE(discount,0))AS final FROM table;
+
+item | final  |
+---------------
+ A   |  80    |   
+ B   |  300   |   
+ C   |  190   |  
+
+Keep the COALESCE function in mind in case you encounter a table with null values that you want to perform operations on.
+
+
+
