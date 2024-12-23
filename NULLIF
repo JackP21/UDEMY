@@ -1,0 +1,44 @@
+NULLIF
+=========
+
+The NULLIF function takes in 2 inputs and returns NULL if both are equal, otherwise it returns the first arguement passed. 
+- NULLIF(arg1,arg2)
+Example: 
+NULLIF(10,10)
+This returns NULL, this is because they are equal to each other.
+
+If you had:
+NULLIF(10,12)
+This would return 10.
+
+This becomes very useful in cases where a NULL value would cause an error or unwanted result.
+Example:
+Given this table, calculate the ratio of department A to department B.
+
+Name    | Department
+--------+-----------
+Lauren  |    A
+Vinton  |    A
+Claire  |    B
+
+We can easily see the ratio of A to B is 2:1 or 200%. Using SQL to solve this using a CASE statement.
+To find the ratio:
+SELECT (
+SUM(CASE WHEN department = 'A' THEN 1 ELSE 0 END)/
+SUM(CASE WHEN department = 'B' THEN 1 ELSE 0 END)
+) AS department_ratio
+FROM depts
+This would return to us 2.
+
+If we deleted people from department B and ran the same query, we would be returned a error message saying we cannot divide by zero.
+To use NULLIF to stop this error we would write:
+SELECT (
+SUM(CASE WHEN department = 'A' THEN 1 ELSE 0 END)/
+NULLIF(SUM(CASE WHEN department = 'B' THEN 1 ELSE 0 END),0)
+)AS department_ratio
+FROM depts
+
+
+
+
+
