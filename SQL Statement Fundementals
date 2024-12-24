@@ -1,0 +1,87 @@
+SQL Statement Fundementals
+==============================
+
+SELECT
+- This is the most common used.
+- It allows us to retrieve information from a table.
+
+Simple syntax for SELECT:
+SELECT column_name FROM table_name;
+The SQL keywords do not need to be capitalised, this is just for the users to be able to differentiate between the two types.
+If column_name is replaced with * this will select all the columns from the table chosen.
+
+There are some other keywords that work with SELECT, these are:
+- DISTINCT() 
+- COUNT()
+
+DISTINCT
+This keyword operates on a column, for example:
+SELECT DISTINCT column_name FROM table;
+You can add () around the column name to emphasise that you are using DISTINCT.
+
+COUNT() 
+This function returns the number of input rows that match a specific conditionof a query. You can apply COUNT on specific columns by naming them or you can input COUNT(*) and this will count all the rows in the table.
+
+The syntax is as follows:
+SELECT COUNT(name) From table;
+SELECT COUNT(choice) From table;
+SELECT COUNT(*) From table;
+All three of these queries will return the same outcome.
+
+The COUNT functions needs to have () after for it to execute. COUNT can be used with other functions in SQL such as DISTINCT this will return a count up of a distinct item in the table, for example, someones first name is David you can use them together to count up the number of people in the table with the first name David.
+SELECT COUNT(DISTINCT name) FROM table;
+
+SELECT WHERE statements
+This is the most fundemental and most used SQL statement. WHERE allows us to specify conditions on columns for the rows to be returned.
+Basic syntax:
+SELECT column1, column2 
+FROM table
+WHERE condition;
+
+The WHERE clause appears immediately after the FROM clauseof the SELECT statement. The conditions are used to filter rows returned from the SELECT statement.
+
+Comparison Operators
+These are so that we can compare a column value to something, for example:
+- Is the price greater than $300
+- Is the pets name equal to 'Sam'
+
+Operator  |  Description
+----------+-------------
+    =     |  Equal
+    >     |  Greater than
+    <     |  Less than
+   >=     |  Greater than or equal to
+   <=     |  Less than or equal to
+<> or !=  |  Not equal to 
+
+
+Logical Operators
+These allow us to combine mulitple comparisons, these are:
+- AND
+- OR
+- NOT
+
+Syntax: 
+SELECT name,choice FROM table 
+WHERE name = '  '
+AND choice = '  '
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
