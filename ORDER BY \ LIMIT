@@ -1,0 +1,25 @@
+ORDER BY / LIMIT
+=======================
+
+ORDER BY 
+
+In SQL it sometimes returns the same request query in different orders, you can use the ORDER BY function to sort these rows based on a column value in either ascending or descending order, this can be alphabeticalor numeric order.
+
+The syntax should look like:
+SELECT column1, column2
+FROM table 
+ORDER BY column1 ASC / DESC;
+ORDER BY will be put at the bottom of the query as you need the table information first. If you don't put ASC or DESC and just leave it blank the table will automatically sort by Ascending order.
+You can use ORDER BY and not have to have selected the column you wish to order it by.
+
+
+LIMIT
+
+This functions allows you to limit the amount of rows returned from a query. It is useful for the user not wanting every row from the table, it can be used to only show a few rows of the table. LIMIT becomes more useful in combinations with ORDER BY.
+LIMIT goes on the very end of the query request and it is the last command to be executed.
+An example is: 
+SELECT *
+FROM table 
+ORDER BY date DESC 
+LIMIT 5;
+This will only return every column but only the first 5 rows by a descending order.
