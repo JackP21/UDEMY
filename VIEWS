@@ -5,3 +5,32 @@ Often there are specific combinations of tables and conditions that you find you
 Instead of having to perform the same query over an over again as a starting point, you can create a VIEW to quickly see this query with a simple call.
 
 If you find yourself always joining the same two tables then you can create whats called a VIEW.
+
+A view is a database object that is of a stored query.
+A view can be accessed as a virtual table in PostgreSQL.
+Notice that view does not store dataphysically, it simply stores the query.
+You can also update and alter any existing views.
+
+To create a VIEW:
+CREATE VIEW customer_info AS 
+SELECT first_name, last_name, address 
+FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id;
+
+Then you will be able to access this view by:
+SELECT * FROM customer_info;
+
+If you need to alter or update anything in the query:
+CREATE OR REPLACE customer_info AS 
+SELECT first_name, last_name, address, district
+FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id;
+
+To rename the query:
+ALTER VIEW customer_info RENAME TO c_info;
+
+Finally to delete  the VIEW:
+DROP VIEW c_info;
+
