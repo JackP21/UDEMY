@@ -1,0 +1,14 @@
+Importing and Exporting data
+=====================================
+
+In this section we will explore the import / export functionality of PGAdmin, which allows us to import data from a .csv file to an already existing table.
+There are some important notes to keep in mind when using import / export.
+
+- IMPORTANT NOTE 1
+Not every outside data file will work, variations in formatting, macros, data types, etc, may prevent the import command from reading the file, at which point, you must edit your file to be compatible with SQL.
+
+- IMPORTANT NOTE 2
+You must provide the 100% correct file path to your outside file, otherwise the import command will fail to find the file, this is the most common mistake, if failing to provide the correct file path, confirm the files location under its properties.
+
+- IMPORTANT NOTE 3
+The import command DOES NOT create a table for you. It assumes a table is already created. Currently there is no automated way within PGAdmin to create a table directly from a .csv file.
