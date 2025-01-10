@@ -1,0 +1,122 @@
+GROUP BY 
+======================
+
+GROUP BY allows us to aggregate data and apply functions to better understand how data is distributed per category.
+
+
+Aggregate Functions
+-----------------------
+
+SQL provides a variety of aggregate functrions. The main idea behind an aggregate function is to take multiple inputs and return a single output.
+The most common aggregate functions are:
+- AVG()   - Returns the average value.
+- COUNT() - Returns the number of values.
+- MAX()   - Returns the maximum value.
+- MIN()   - Returns the minimum value.
+- SUM()   - Returns the sum of all values.
+
+Note: Aggregate function calls happen only in the SELECT clause or the HAVING clause.
+
+Special Notes:
+- AVG() returns a floating point value with many decimal places(e.g 1.23456). You are able to use ROUND() to specify the precision after the decimal.
+- COUNT() simply returns the number of rows, which means by convention we just use COUNT(*).
+
+SELECT ROUND(AVG(replacement_cost),2) 
+FROM film;
+- This will find the average replacement cost and round that output to two decimal places.
+
+SELECT MAX(replacement_cost), MIN(replacement_cost) 
+FROM film;
+- This will return to the user the maximum and the minimum costs. These can be used like this as they return one value and don't need to call on any other rows.
+
+SELECT SUM(replacement_cost) 
+FROM film;
+- This will add up all the rows in the table for the chosen column.
+
+
+SELECT category_column, AGG(data_column) 
+FROM table
+GROUP BY category_column;
+- The GROUP BY clause must appear right after a FROM or WHERE statement.
+
+SELECT category_column, AGG(data_column) 
+FROM table
+WHERE category_column != 'A'
+GROUP BY category_column;
+- This filters out some data just like before when using WHERE clauses.
+
+SELECT company, division, SUM(sales)
+FROM finance_table
+GROUP BY comapny, division;
+- In the SELECT statement columns must either have an aggregate function or be in the GROUP BY call.
+
+WHERE statements should not refer to the aggregation result, later on the HAVING statement will be used to filter those results.
+
+SELECT company, SUM(sales)
+FROM finance_table
+GROUP BY company 
+ORDER BY SUM(sales);
+- If you want to sort results based on the aggregate, make sure to reference the entire function. Also you can add LIMIT at the end to see fewer results like before.
+
+SLEECT DATE(payment_date)
+FROM payment;
+- This shows us only the date, it removes the hours, minutes and seconds from the column.
+
+SELECT DATE(payment_date), SUM(amount)
+FROM payment
+GROUP BY DATE(payment_date)
+ORDER BY SUM(amount);
+- This statement will give us the total amount next to each date.
+Example: 2007-02-14 | 116.73
+  - This is the total spent in the store that day.
+Using DATE extracts the whole date and groups the same date all together.
+
+
+HAVING
+------------------
+
+The HAVING clause allows us to filter after an aggregation has already taken place.
+Example:
+SELECT company, SUM(sales)
+FROM finance_table
+GROUP BY company;
+
+To filter:
+SELECT company, SUM(sales)
+FROM finance_table
+WHERE company != 'Google'
+GROUP BY company;
+- We are able to filter before the GROUP BY clause.
+
+If we want to filter based on the SUM(sales) we cannot use WHERE to filter based off of aggregate results, because those happen after a WHERE is executed.
+SELECT company, SUM(sales)
+FROM finance_table
+WHERE company != 'Google'
+GROUP BY company
+HAVING SUM(sales) > 1000;
+- HAVING allows us to use the aggregate result as a filter along with a GROUP BY.
+
+You end up with this as the query used:
+
+SELECT company, SUM(sales)
+FROM finance_table
+GROUP BY company
+HAVING SUM(sales) > 1000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
