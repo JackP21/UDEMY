@@ -1,5 +1,5 @@
 JOIN
-=======================
+===============================
 
 JOIN allows us to combine information from multiple different tables, with these we will be able to also create an alias for the newly formed table using the AS clause.
 
@@ -20,7 +20,7 @@ FROM table;
 The AS operator gets executed at the very end of a query, meaning we can not use the new alias in a WHERE operation.
 
 INNER JOIN 
-----------------
+----------------------------------
 
 There are several types of JOINs that we are able to use, the simplest one is an INNER JOIN. JOINs allow us to combine multiple tables together. The main reason for the different JOIN types is to decide how we deal with information only present in one of the joined tables.
 An INNER JOIN will result with the set of records that match in both tables.
@@ -33,7 +33,7 @@ ON tableA.column_match = tableB.column_match;
 INNER JOIN is symmectrical, you can swap tableA and tableB and it would still return the same output.
 
 OUTER JOIN 
------------------
+----------------------------------
 
 There are a few different types of OUTER JOINs. They will allow us to specify how to deal with values only present in one of the tables being joined, these JOINs are:
 - FULL OUTER JOIN
@@ -55,9 +55,31 @@ WHERE tableA.id IS NULL OR tableB IS NULL;
 
 This would only grab unique data from tableA and tableB.
 
+LEFT OUTER JOIN / LEFT JOIN
+----------------------------------
 
+A LEFT OUTER JOIN results in the set of records thta are in the left table, if there is no match with the right table, the results are NULL.
 
+LEFT OUTER JOIN syntax:
 
+SELECT * FROM tableA
+LEFT OUTER JOIN tableB
+ON tableA.column_match = tableB.column_match
+WHERE tableA.id IS NULL OR tableB IS NULL;
+
+This join is not symmectrical if contents on tableA are not on tableB it will not be returned. Order matters on a LEFT OUTER JOIN the first table stated will be the primary and won't return anything that is exclusive to the second table.
+
+To use a WHERE statement:
+
+SELECT * FROM tableA
+LEFT OUTER JOIN tableB
+ON tableA.column_match = tableB.column_match
+WHERE tableB IS NULL;
+
+This will return to you what is exclusive to the left hand table / first table stated.
+
+RIGHT OUTER JOIN / RIGHT JOIN
+----------------------------------
 
 
 
