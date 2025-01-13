@@ -20,4 +20,67 @@ some syntax would be:
 - TIMESTAMP - Contains both time and date.
 - TIMESTAMPTZ - Contains both time and date and also a timezone.
 
+Careful considerations should be made when designing a table and database and choosing a time data type. Depending on the situation you may or may not need the full level of TIMESTAMPTZ. Remember you can always remove the historical information, but you can't add it afterwards.
+Exploring functions and operations related to these specific data types:
+- TIMEZONE
+- NOW
+- TIMEOFDAY
+- CURRENT_TIME
+- CURRENT_DATE
+
+A new line is :
+- SHOW ALL - this will display the current setting of run-time parameters.
+- SHOW TIMEZONE - this shows your current timezone you are working in.
+- SELECT NOW() - displays at that moment a timestamp.
+- SELECT TIMEOFDAY() - this will show you a timestamp as a string making it easier to read.
+- SELECT CURRENT_TIME() - this shows the current time where you are.
+- SELECT CURRENT_DATE() - this shows the current date.
+
+Extracting information from a time based data type using:
+- EXTRACT() 
+- AGE()
+- TO_CHAR()
+
+EXTRACT() - Allows you to 'extract' or obtain a sub-component of a data value.
+- YEAR 
+- MONTH
+- DAY
+- WEEK
+- QUARTER
+
+- EXTRACT(YEAR FROM date_column)
+
+AGE() - Calculates and returns the current age given a timestamp.
+
+- AGE(date_column)
+
+TO_CHAR() - General function to convert data types to text. Useful for timestamp formatting.
+
+TH_CHAR(date_column, 'MM-DD-YYYY')
+
+Finding a day of the week:
+SELECT COUNT(*) or (column_name)
+FROM table
+WHERE EXTRACT(dow FROM column_name) = 0 - 6;
+
+0      | 1      | 2       | 3         | 4        | 5      | 6        |
+sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |
+
+Using COUNT(*) will return you the number, using the column name will give you the data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
