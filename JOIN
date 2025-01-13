@@ -1,3 +1,70 @@
 JOIN
 =======================
 
+JOIN allows us to combine information from multiple different tables, with these we will be able to also create an alias for the newly formed table using the AS clause.
+
+Different types of JOINs:
+- INNER JOIN
+- OUTER JOIN
+- FULL JOINS
+- UNIONS
+
+AS syntax:
+
+SELECT column AS new_name
+FROM table;
+or
+SELECT SUM(column) AS new_name
+FROM table;
+
+The AS operator gets executed at the very end of a query, meaning we can not use the new alias in a WHERE operation.
+
+INNER JOIN 
+----------------
+
+There are several types of JOINs that we are able to use, the simplest one is an INNER JOIN. JOINs allow us to combine multiple tables together. The main reason for the different JOIN types is to decide how we deal with information only present in one of the joined tables.
+An INNER JOIN will result with the set of records that match in both tables.
+
+INNER JOIN syntax:
+SELECT * FROM tableA
+INNER JOIN tableB
+ON tableA.column_match = tableB.column_match;
+
+INNER JOIN is symmectrical, you can swap tableA and tableB and it would still return the same output.
+
+OUTER JOIN 
+-----------------
+
+There are a few different types of OUTER JOINs. They will allow us to specify how to deal with values only present in one of the tables being joined, these JOINs are:
+- FULL OUTER JOIN
+- LEFT OUTER JOIN
+- RIGHT OUTER JOIN
+These all clarify where information in the table is NULL.
+FULL OUTER JOIN grabs everything from the tables.
+
+SELECT * FROM tableA
+FULL OUTER JOIN tableB
+ON tableA.column_match = tableB.column_match;
+
+This JOIN is symmetrical too and will grab all data. Using a FULL OUTER JOIN with a WHERE statement gets the rows unique to either table(rows not found in both tables).
+
+SELECT * FROM tableA
+FULL OUTER JOIN tableB
+ON tableA.column_match = tableB.column_match
+WHERE tableA.id IS NULL OR tableB IS NULL;
+
+This would only grab unique data from tableA and tableB.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
