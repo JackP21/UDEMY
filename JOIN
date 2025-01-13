@@ -64,8 +64,7 @@ LEFT OUTER JOIN syntax:
 
 SELECT * FROM tableA
 LEFT OUTER JOIN tableB
-ON tableA.column_match = tableB.column_match
-WHERE tableA.id IS NULL OR tableB IS NULL;
+ON tableA.column_match = tableB.column_match;
 
 This join is not symmectrical if contents on tableA are not on tableB it will not be returned. Order matters on a LEFT OUTER JOIN the first table stated will be the primary and won't return anything that is exclusive to the second table.
 
@@ -80,6 +79,56 @@ This will return to you what is exclusive to the left hand table / first table s
 
 RIGHT OUTER JOIN / RIGHT JOIN
 ----------------------------------
+
+A RIGHT JOIN is essentially the same as a LEFT JOIN, except the tables are switched. This would be the same as switching the order of the tables in the LEFT OUTER JOIN.
+
+SELECT * FROM tableA
+RIGHT OUTER JOIN tableB
+ON tableA.column_match = tableB.column_match;
+
+You can use a left outer join instead, all that is needed to be done is to swap the two table names around.
+
+Adding:
+WHERE tableA IS NULL 
+Will exclude data specific to tableA.
+
+UNIONS
+----------------------------------
+
+The UNION operator is used to combine the result-set of two or more SELECT statements. It basically serves to directly concatenatetwo results together, essentially pasting them together.
+
+SELECT column_names FROM table1
+UNION
+SELECT column_names FROM table2;
+
+Instead of using UNION to join multiple tables you are also able to use multiple joins within the same statement, for  example:
+
+SELECT * FROM tableA
+INNER JOIN tableB ON tableA.column_match = tableB.column_match
+INNER JOIN tablec ON tablec.column_match = tableB.column_match
+WHERE _ _ _ _ _ _ ;
+
+This might be used as the user may want to connect tableA and tableC together but due to them not sharing an ID column that matches you would need a third table that contains elements from both, using tableB to do this as a helper table link.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
