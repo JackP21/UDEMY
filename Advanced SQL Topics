@@ -1,3 +1,23 @@
 Advanced SQL Topics
 ===========================
 
+Some advanced SQL topics are:
+- Timestamps and EXTRACT
+- Maths functions
+- String functions
+- Sub-query
+- Self-join
+
+Timestamps and EXTRACT
+------------------------------
+
+There are a few commands that report back time and date information, these will be more useful when creating our own tables and databases, rather than using them for qurying a database.
+
+In PostGreSQL we see that the database can hold date and time information.
+some syntax would be:
+- TIME - Contains only time.
+- DATE - contains only date.
+- TIMESTAMP - Contains both time and date.
+- TIMESTAMPTZ - Contains both time and date and also a timezone.
+
+
