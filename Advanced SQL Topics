@@ -68,6 +68,9 @@ sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |
 
 Using COUNT(*) will return you the number, using the column name will give you the data.
 
+Mathematical Functions
+---------------------------
+
 
 
 
